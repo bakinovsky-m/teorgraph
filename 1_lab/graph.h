@@ -93,28 +93,6 @@ void Graph::printToConsoleTEXTOM() const{
 		std::cout << std::endl;
 	}
 }
-// void Graph::printToConsole() const{
-// 	std::cout << "ind IJ  H  L" << std::endl;
-// 	for(int i = 0; i < IJ.size(); i++){
-// 		std::cout << i << " |";
-
-// 		std::cout << IJ[i] << " |";
-// 		std::cout << IJ[IJ.size() - 1 - i] << " |";
-
-// 		if(i >= H.size() - 1){
-// 			std::cout << "  |";
-// 		} else {
-// 			std::cout << H[i] << " |";
-// 		}
-// 		if(i >= L.size() - 1){
-// 			std::cout << "  ";
-// 		} else {
-// 			std::cout << L[i] << " ";
-// 		}
-// 		std::cout << std::endl;
-// 	}
-// 	std::cout << std::endl;
-// }
 
 void Graph::exportToDot(char * filename) const{
 	FILE *out;
