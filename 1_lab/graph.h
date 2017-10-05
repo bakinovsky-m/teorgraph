@@ -62,7 +62,7 @@ void Graph::remove(int i, int j){
 void Graph::dfs(int node, int color){
 	if(numComp[node] == -1){
 		numComp[node] = color;
-		for(int i = 0; i < IJ.size() / 2; i++){
+		for(int i = 0; i < IJ.size(); i++){
 			if(IJ[i] == node){
 				dfs(IJ[IJ.size() - 1 - i], color);
 			}
@@ -146,6 +146,30 @@ void Graph::exportToDot(char * filename) const{
 			}
 			case 1: {
 				color = "green";
+				break;
+			}
+			case 2: {
+				color = "lightgreen";
+				break;
+			}
+			case 3: {
+				color = "cyan";
+				break;
+			}
+			case 4: {
+				color = "brown";
+				break;
+			}
+			case 5: {
+				color = "gold";
+				break;
+			}
+			case 6: {
+				color = "fuchsia";
+				break;
+			}
+			case 7: {
+				color = "darkred";
 				break;
 			}
 		}
