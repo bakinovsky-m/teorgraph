@@ -1,16 +1,17 @@
 all: png
-	feh my_graph1.png &
-	feh my_graph2.png &
-
+	feh build/my_graph1.png &
+	feh build/my_graph2.png &
 
 png: compile
-	./main
-	dot -Tpng my_graph1.dot -o my_graph1.png
-	dot -Tpng my_graph2.dot -o my_graph2.png
+	build/main
+	dot -Tpng build/my_graph1.dot -o build/my_graph1.png
+	dot -Tpng build/my_graph2.dot -o build/my_graph2.png
 
-compile:
-	g++ main.cpp -o main
+compile: prep
+	g++ main.cpp -o build/main
+
+prep:
+	mkdir build
 
 clean:
-	rm my*
-	rm main
+	rm -rf build

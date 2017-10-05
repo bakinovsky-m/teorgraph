@@ -12,9 +12,9 @@ int main(){
 	Graph g = Graph(count, vi, vj);
 	g.printToConsole();
 	g.printToConsoleTEXTOM();
-	g.exportToDot((char*)"my_graph1.dot");
+	g.exportToDot((char*)"build/my_graph1.dot");
 	g.add(1, 2);
-	g.exportToDot((char*)"my_graph2.dot");
+	g.exportToDot((char*)"build/my_graph2.dot");
 	
 
 	return 0;
