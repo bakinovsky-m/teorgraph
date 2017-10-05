@@ -15,6 +15,7 @@ int main(){
 	g.exportToDot((char*)"build/my_graph1.dot");
 	g.add(1, 2);
 	g.exportToDot((char*)"build/my_graph2.dot");
+	g.connectedComp(1);
 	
 
 	return 0;

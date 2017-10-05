@@ -12,18 +12,20 @@ public:
 	void printToConsole() const;
 	void printToConsoleTEXTOM() const;
 	void add(int i, int j);
+	void remove(int n);
+	void remove(int i, int j);
+	void dfs(int node, int color);
+	void connectedComp(int node);
 	void exportToDot(char *) const;
 private:
 	void computeHL();
-	std::vector<int> IJ, H, L;
+	std::vector<int> IJ, H, L, numComp;
 	int count = 0;
 };
 
 Graph::Graph(int _count, std::vector<int> vi, std::vector<int> vj){
 	count = _count;
-	IJ.reserve(vj.size() * 2);
-	H.reserve(count);
-	L.reserve(vi.size() * 2);
+
 	for(int i = 0; i < vi.size(); i++){
 		IJ.push_back(vi[i]);
 	}
@@ -36,6 +38,9 @@ Graph::Graph(int _count, std::vector<int> vi, std::vector<int> vj){
 	for(int i = 0; i < IJ.size(); i++){
 		L.push_back(-1);
 	}
+	for(int i = 0; i < count; i++){
+		numComp.push_back(-1);
+	}
 
 	computeHL();
 }
@@ -44,6 +49,31 @@ void Graph::add(int i, int j){
 	IJ.insert(IJ.begin() + IJ.size() / 2, i);
 	IJ.insert(IJ.begin() + (IJ.size() + 1) / 2, j);
 	computeHL();
+}
+
+void Graph::remove(int n){
+
+}
+
+void Graph::remove(int i, int j){
+
+}
+
+void Graph::dfs(int node, int color){
+	if(numComp[node] == -1){
+		numComp[node] = color;
+		for(int i = 0; i < IJ.size() / 2; i++){
+			if(IJ[i] == node){
+				dfs(IJ[IJ.size() - 1 - i], color);
+			}
+		}
+	}
+}
+
+void Graph::connectedComp(int node){
+	for(int i = 0; i < count; i ++){
+		dfs(i, i);
+	}
 }
 
 void Graph::computeHL(){
@@ -99,7 +129,7 @@ void Graph::exportToDot(char * filename) const{
 	out = fopen(filename, "w");
 	fprintf(out, "graph gr {\n");
 	for(int i = 0; i < count; i++){
-		fprintf(out, "  %d;\n", i);
+		fprintf(out, "  %d [fillcolor = %s];\n", i, numComp[i]);
 	}
 	for(int i = 0; i < IJ.size() / 2; i++){
 		fprintf(out, "  %d -- %d;\n", IJ[i], IJ[IJ.size() - 1 - i]);

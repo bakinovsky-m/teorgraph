@@ -11,7 +11,7 @@ compile: prep
 	g++ main.cpp -o build/main
 
 prep:
-	mkdir build
+	mkdir -p build
 
 clean:
 	rm -rf build
