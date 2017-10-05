@@ -8,7 +8,7 @@ png: compile
 	dot -Tpng build/my_graph2.dot -o build/my_graph2.png
 
 compile: prep
-	g++ main.cpp -o build/main
+	g++ -g main.cpp -o build/main
 
 prep:
 	mkdir -p build

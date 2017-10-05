@@ -15,7 +15,7 @@ public:
 	void remove(int n);
 	void remove(int i, int j);
 	void dfs(int node, int color);
-	void connectedComp(int node);
+	void connectedComp();
 	void exportToDot(char *) const;
 private:
 	void computeHL();
@@ -70,7 +70,7 @@ void Graph::dfs(int node, int color){
 	}
 }
 
-void Graph::connectedComp(int node){
+void Graph::connectedComp(){
 	for(int i = 0; i < count; i ++){
 		dfs(i, i);
 	}
@@ -105,6 +105,11 @@ void Graph::printToConsole() const{
 		std::cout << (L[i]) << " ";
 	}
 	std::cout << std::endl;
+
+	for(int i = 0; i < IJ.size(); i++){
+		std::cout << (IJ[i]) << " ";
+	}
+	std::cout << std::endl;
 }
 
 void Graph::printToConsoleTEXTOM() const{
@@ -129,7 +134,22 @@ void Graph::exportToDot(char * filename) const{
 	out = fopen(filename, "w");
 	fprintf(out, "graph gr {\n");
 	for(int i = 0; i < count; i++){
-		fprintf(out, "  %d [fillcolor = %s];\n", i, numComp[i]);
+		char * color = "";
+		switch(numComp[i]){
+			case -1: {
+				color = "red";
+				break;
+			}
+			case 0: {
+				color = "blue";
+				break;
+			}
+			case 1: {
+				color = "green";
+				break;
+			}
+		}
+		fprintf(out, "  %d [color = %10s];\n", i, color);
 	}
 	for(int i = 0; i < IJ.size() / 2; i++){
 		fprintf(out, "  %d -- %d;\n", IJ[i], IJ[IJ.size() - 1 - i]);
